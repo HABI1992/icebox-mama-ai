@@ -1,0 +1,526 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>冰箱媽媽 AI｜幼兒晚餐規劃</title><style>
+:root{--ink:#29342f;--muted:#728078;--bg:#fbfaf6;--card:#fff;--line:#e7e5dc;--sage:#738f7c;--mint:#eaf2ea;--peach:#f9e6d8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif}.nav{height:68px;display:flex;align-items:center;justify-content:space-between;max-width:1080px;margin:auto;padding:0 22px}.logo{font-weight:900;font-size:21px}.nav button{padding:10px 15px;border:0;border-radius:12px;background:var(--mint);font-weight:800;cursor:pointer}.nav button.auth-logged{background:#eef5ee}.google-login{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px;border:1px solid #d7d7d7;border-radius:13px;background:#fff;font:inherit;font-weight:800;cursor:pointer}.google-g{font-size:20px}.auth-status{font-size:13px;color:var(--muted);margin-top:10px;text-align:center}.logout{width:100%;padding:12px;border:1px solid #e2caca;border-radius:13px;background:#fff7f7;color:#9a4949;font:inherit;font-weight:800;cursor:pointer;margin-top:10px}.hero{max-width:1080px;margin:auto;padding:65px 22px 45px;display:grid;grid-template-columns:1.1fr .9fr;gap:38px;align-items:center}.badge{display:inline-block;background:var(--peach);padding:7px 12px;border-radius:99px;font-size:13px}.hero h1{font-size:52px;line-height:1.15;margin:16px 0}.hero p{font-size:18px;color:var(--muted);line-height:1.7}.cta{padding:17px 22px;background:var(--sage);color:#fff;border:0;border-radius:16px;font-size:17px;font-weight:900;cursor:pointer}.mock{background:#fff;border:1px solid var(--line);border-radius:26px;padding:18px;box-shadow:0 18px 45px #2b362e12}.mini{padding:12px;border:1px solid var(--line);border-radius:15px;margin:9px 0}.mini b{display:block;margin-bottom:5px}.tag{display:inline-block;padding:5px 8px;border-radius:99px;background:#f4efe5;font-size:12px;margin-right:5px}.section{max-width:1080px;margin:auto;padding:65px 22px}.section h2{text-align:center;font-size:34px}.section>p{text-align:center;color:var(--muted)}.steps,.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px}.num{font-size:30px;font-weight:900;color:var(--sage)}.price{position:relative}.price.hot{border:2px solid var(--sage);transform:translateY(-8px)}.ribbon{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--sage);color:#fff;padding:5px 12px;border-radius:99px;font-size:12px}.price h3{font-size:23px}.amount{font-size:35px;font-weight:900}.price ul{padding-left:20px;line-height:2}.price button{width:100%;padding:13px;border:0;border-radius:13px;background:var(--mint);font-weight:900;cursor:pointer}.price.hot button{background:var(--sage);color:#fff}.faq{max-width:720px;margin:20px auto}.faq details{background:#fff;border:1px solid var(--line);padding:16px;border-radius:14px;margin:10px 0}.final{background:linear-gradient(135deg,#dcebdd,#f9e6d8);text-align:center;padding:70px 20px}.footer{text-align:center;padding:25px;color:var(--muted);font-size:12px}.modal{position:fixed;inset:0;background:#0007;display:none;place-items:center;padding:18px}.modal.on{display:grid}.modalbox{width:min(460px,100%);background:#fff;border-radius:22px;padding:24px}.modalbox input{width:100%;padding:13px;border:1px solid var(--line);border-radius:12px;margin:7px 0}.close{float:right;border:0;background:none;font-size:22px;cursor:pointer}.pay{width:100%;padding:14px;border:0;border-radius:13px;background:var(--sage);color:#fff;font-weight:900;cursor:pointer;margin-top:8px}@media(max-width:720px){.hero{grid-template-columns:1fr;padding-top:35px}.hero h1{font-size:40px}.steps,.prices{grid-template-columns:1fr}.price.hot{transform:none}.section{padding:48px 18px}}
+
+.product-app{display:none;min-height:100vh;background:#f6f5ef;padding-bottom:50px}.product-top{max-width:760px;margin:auto;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}.product-top>div{display:flex;gap:10px;align-items:center}.back-home{border:0;background:transparent;font:inherit;cursor:pointer;color:#607068}.product-top span{font-size:12px;background:#eaf3eb;padding:6px 9px;border-radius:999px}.trial-notice{max-width:732px;margin:0 auto 8px;padding:12px 16px;background:#fff4e8;border:1px solid #f0ddc7;border-radius:14px;font-size:14px}.trial-notice button{border:0;background:none;color:#567c62;text-decoration:underline;font:inherit;cursor:pointer}
+.product-app .app{max-width:760px;margin:auto;padding-bottom:20px}.product-app .hero{display:block;padding:30px 20px;background:linear-gradient(135deg,#dcebdd,#f9e6d8);margin:0}.product-app .brand{font-size:30px;font-weight:900}.product-app .tag{color:#607068;margin-top:5px}.product-app .card{background:#fff;border:1px solid #e6e4db;border-radius:22px;padding:18px;margin:14px}.product-app h2{font-size:18px;margin:0 0 12px}.product-app .hint{font-size:13px;color:#748078;line-height:1.6}.product-app textarea,.product-app input,.product-app select{width:100%;padding:12px;border:1px solid #e6e4db;border-radius:14px;font:inherit;margin-top:7px}.product-app .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.product-app .choices{display:flex;flex-wrap:wrap;gap:8px}.product-app .choice{padding:10px 12px;border:1px solid #e6e4db;border-radius:14px;background:#fff;cursor:pointer}.product-app .choice.on{background:#eaf3eb;border-color:#94ad99}.product-app .primary{border:0;border-radius:16px;padding:14px 17px;font:inherit;font-weight:800;cursor:pointer;background:#789681;color:#fff}.product-app .wide{width:calc(100% - 28px);margin:8px 14px}.product-app .hidden{display:none}.product-app .day{border-left:5px solid #8ca994;border:1px solid #e6e4db;border-radius:16px;padding:14px;margin:11px 0}.product-app .day h3{margin:0 0 6px}.dish-image-wrap{margin:12px 0 14px;border-radius:16px;overflow:hidden;background:#f2f1eb;min-height:180px;position:relative}.dish-image{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}.dish-image-loading{min-height:180px;display:flex;align-items:center;justify-content:center;padding:18px;color:#748078;font-size:14px;text-align:center}.dish-image-error{min-height:120px;display:flex;align-items:center;justify-content:center;padding:18px;color:#9a4949;font-size:13px;text-align:center}.product-app .chips{display:flex;gap:6px;flex-wrap:wrap}.product-app .chip{font-size:12px;background:#f4efe5;border-radius:999px;padding:5px 8px}.product-app .note{background:#f8faf6;border-radius:14px;padding:12px;line-height:1.75;font-size:14px}.product-app .step{padding:9px 0;border-bottom:1px solid #e9eee9}.product-app .loading{padding:24px;text-align:center;color:#62746a}.product-app .shopping label{display:block;padding:8px 0;border-bottom:1px solid #eee}.product-app .shopping input{width:auto;margin-right:8px}.product-app .error{color:#9a4949;background:#fff1f1;padding:12px;border-radius:12px}.member-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.member-actions button,.dish-actions button{border:1px solid #cfdccf;background:#fff;border-radius:12px;padding:9px 12px;font:inherit;font-weight:800;cursor:pointer}.member-actions button.primary{background:#789681;color:#fff;border:0}.dish-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.profile-card{background:#f8faf6}.profile-actions{display:flex;gap:8px;margin-top:10px}.profile-actions button{border:0;border-radius:12px;padding:10px 12px;background:#eaf3eb;font-weight:800;cursor:pointer}.favorite-list{margin-top:10px}.favorite-item{padding:14px 0;border-bottom:1px solid #e6e4db;cursor:pointer}.favorite-item:last-child{border-bottom:0}.favorite-item:hover b{text-decoration:underline}.favorite-detail{margin-top:10px;padding:14px;border:1px solid #e6e4db;border-radius:14px;background:#fff}.favorite-detail .dish-actions{margin-top:14px}.favorite-detail select{width:100%;margin-top:10px;padding:10px;border:1px solid #cfdccf;border-radius:10px;font:inherit;background:#fff}.member-only{display:none}
+
+
+
+.device-extra{margin-top:12px;padding-top:12px;border-top:1px dashed #e5e5e5}.device-extra label{display:block;font-weight:700;margin-bottom:6px}.device-extra input{margin-top:8px;width:100%}
+</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script></head><body><div id="landing">
+<nav class="nav"><div class="logo">🧊 冰箱媽媽 AI</div><button id="authButton" type="button">登入</button></nav>
+<section class="hero"><div><span class="badge">給每天都在想「今晚吃什麼」的媽媽</span><h1>打開冰箱，<br>晚餐就決定了。</h1><p>輸入家裡現有食材與孩子需求，AI 幫你生成 5 天不重複幼兒晚餐，連食材份量、料理順序與時間都幫你想好。</p><button class="cta" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">免費試用一次 ✨</button></div>
+<div class="mock"><b>💡 本週免動腦晚餐</b><div class="mini"><b>週一｜雞肉花椰菜炊飯</b><span class="tag">20 分鐘</span><span class="tag">電鍋一鍋到底</span><p>雞肉 60g＋花椰菜 40g＋白米 1/2 杯</p></div><div class="mini"><b>週二｜鮭魚番茄義大利麵</b><span class="tag">18 分鐘</span><span class="tag">一鍋到底</span><p>每一步都有明確順序與烹飪時間</p></div><div class="mini">🛒 自動產生本週缺少食材</div></div></section>
+<section class="section"><h2>媽媽只需要做 3 件事</h2><div class="steps"><div class="card"><div class="num">01</div><h3>輸入冰箱食材</h3><p>不用整理，想到什麼就輸入什麼。</p></div><div class="card"><div class="num">02</div><h3>設定孩子需求</h3><p>年齡、份數、不吃食物、口感與料理設備。</p></div><div class="card"><div class="num">03</div><h3>AI 幫你排好 5 天</h3><p>菜單、用量、步驟、時間與採買清單一次完成。</p></div></div></section>
+<section class="section" id="pricing"><h2>先免費試，再決定要不要留下</h2><p>不需要一開始就綁長期會員。</p><div class="prices">
+<div class="card price"><h3>免費體驗</h3><div class="amount">NT$0</div><ul><li>首次生成 1 次</li><li>5 天完整文字食譜</li><li>完整採買清單</li></ul><button onclick="openModal('free')">免費開始</button></div>
+<div class="card price hot"><div class="ribbon">最推薦</div><h3>媽媽月費</h3><div class="amount">NT$99<span style="font-size:15px">／月</span></div><ul><li>每月 20 次 AI 文字食譜生成</li><li>完整料理步驟與時間</li><li>多位孩子飲食檔案</li><li>收藏與一鍵換菜</li></ul><button onclick="openModal('monthly')">開始月費方案</button></div>
+<div class="card price"><h3>單次一週</h3><div class="amount">NT$39</div><ul><li>生成 1 週菜單</li><li>5 天完整晚餐</li><li>食材用量與採買清單</li></ul><button onclick="openModal('once')">購買這週菜單</button></div></div></section>
+<section class="section"><h2>常見問題</h2><div class="faq"><details><summary>真的需要下載 App 嗎？</summary><p>不用，直接開網址即可使用。</p></details><details><summary>付款後會自動扣款嗎？</summary><p>月費方案會依付款服務商的訂閱設定續費；單次方案則只付款一次。</p></details></div></section>
+<section class="final"><h2>今晚，不用再為晚餐想破頭。</h2><p>讓冰箱媽媽 AI 幫你把最難的決定做掉。</p><button class="cta" onclick="openModal('free')">免費試用一次</button></section>
+<div class="footer">© 冰箱媽媽 AI｜幼兒飲食有特殊醫療需求時，請以醫師或營養師建議為準。</div>
+</div>
+<section id="app" class="product-app">
+<div class="product-top"><button class="back-home">← 回到首頁</button><div><b>🧊 冰箱媽媽 AI</b><span id="planBadge">免費體驗</span></div></div>
+<div id="trialNotice" class="trial-notice"></div>
+<div class="app">
+<div class="hero"><div class="brand">🧊 冰箱媽媽 AI</div><div class="tag">輸入現有食材，AI 幫你把 5 天晚餐決定好。</div></div>
+<div class="card"><h2>🥕 冰箱現有食材</h2><div class="hint">想到什麼就打什麼，用逗號分隔即可。</div><textarea id="ingredients" rows="4" placeholder="例如：雞胸肉、雞蛋、嫩豆腐、花椰菜、紅蘿蔔、番茄、鮭魚"></textarea></div>
+<div class="card"><h2>🍚 家中常備主食</h2><input id="staples" placeholder="例如：白米、義大利麵、吐司、地瓜"></div>
+<div class="card"><h2>🌟 許願菜單 <span class="hint">（可選填）</span></h2><div class="hint">今天特別想吃什麼類型？這是「偏好池」，AI 會挑 1～3 個合理分配到一週，不會全部硬塞進同一道菜。</div><input id="wishes" placeholder="例如：羹湯、義大利麵、燉飯、咖哩、湯麵"><div class="choices" id="wishSuggestions"><button type="button" class="choice" data-wish="羹湯">🥣 羹湯</button><button type="button" class="choice" data-wish="義大利麵">🍝 義大利麵</button><button type="button" class="choice" data-wish="燉飯">🍚 燉飯</button><button type="button" class="choice" data-wish="咖哩">🍛 咖哩</button><button type="button" class="choice" data-wish="湯麵">🍜 湯麵</button></div></div>
+<div class="card"><h2>👶 幼兒與家庭人數</h2><div class="row"><div><span class="hint">幼兒年齡</span><select id="age"><option>1-2歲</option><option selected>3-4歲</option><option>5-6歲</option><option>6歲以上</option></select></div><div><span class="hint">幼兒人數</span><select id="servings"><option value="1">1 位</option><option value="2">2 位</option><option value="3">3 位</option></select></div></div><div class="row"><div><span class="hint">大人人數</span><select id="adultServings"><option value="0" selected>0 位</option><option value="1">1 位</option><option value="2">2 位</option><option value="3">3 位</option></select></div><div><span class="hint">今晚希望幾道菜 <small>（不包含湯）</small></span><select id="dishCount"><option value="1">1 道</option><option value="2">2 道</option><option value="3" selected>3 道</option></select></div></div><span class="hint">是否要湯</span><select id="wantSoup"><option value="yes" selected>要，另外加 1 道簡單湯品</option><option value="no">不要湯</option></select><span class="hint">過敏／不吃</span><input id="avoid" placeholder="例如：蝦、花生、香菇"><span class="hint">口感需求</span><input id="texture" placeholder="例如：食物切小塊、喜歡軟嫩"></div><div class="card"><h2>🍳 家中設備</h2><div class="choices" id="tools"></div><div class="device-extra"><label for="wishTools">＋ 其他家中設備 <span class="hint">（可選填）</span></label><div class="hint">例如：萬用鍋、快煮鍋、蒸煮鍋、調理機。填入後會和上方已選設備一起帶入 AI 生成條件。</div><input id="wishTools" placeholder="例如：萬用鍋、快煮鍋、蒸煮鍋、調理機"></div></div>
+<div class="card"><h2>⏱️ 每餐時間</h2><div class="choices" id="times"><div class="choice on" data-time="20">20 分鐘內</div><div class="choice" data-time="30">30 分鐘內</div><div class="choice" data-time="40">40 分鐘內</div></div></div>
+<button id="go" class="primary wide">🤖 AI 幫我生成 5 天晚餐</button>
+<section id="result" class="hidden"><div id="memberActions" class="member-actions member-only"><button id="regenerateWeek" class="primary" type="button">🔄 重新生成整週菜單</button><button id="showFavorites" type="button">❤️ 收藏菜色</button></div><div id="favoritesPanel" class="card hidden"><h2>❤️ 我收藏的菜色</h2><div class="hint">點選菜色查看完整食譜、取消收藏，或加入本週菜單。</div><div id="favoriteList" class="favorite-list"></div><div id="favoriteDetail"></div></div><div class="card"><h2>💡 這週免動腦晚餐</h2><div id="summary" class="hint"></div><div id="menu"></div></div><div class="card"><h2>🛒 AI 補貨清單</h2><div class="shopping" id="shopping"></div></div><div class="card"><h2>⚡ 媽媽省時大絕招</h2><div id="hack" class="note"></div></div></section>
+<div class="footer">AI 產生的菜單屬一般飲食建議；若孩子有疾病、嚴重過敏或特殊飲食需求，請以醫師／營養師建議為準。</div>
+</div></section><div class="modal" id="modal"><div class="modalbox"><button class="close" onclick="closeModal()">×</button><div id="modalContent"></div></div></div><script>
+(function () {
+  'use strict';
+
+  const $ = (id) => document.getElementById(id);
+  const TRIAL = 'icebox_mama_trial_used';
+  const PAID = 'icebox_mama_paid_plan';
+  const PROFILE = 'icebox_mama_child_profile';
+  const FAVORITES = 'icebox_mama_favorites';
+  let currentMenuData = null;
+  let lastPayload = null;
+  let supabaseClient = null;
+  let authUser = null;
+  let authReady = false;
+
+  function escapeHtml(value) {
+    return String(value ?? '').replace(/[&<>"']/g, ch => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
+    }[ch]));
+  }
+
+  function showProduct() {
+    $('landing').style.display = 'none';
+    $('app').style.display = 'block';
+    updatePlanUI();
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function showLanding() {
+    $('app').style.display = 'none';
+    $('landing').style.display = 'block';
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  function showPricing() {
+    showLanding();
+    setTimeout(() => $('pricing')?.scrollIntoView({behavior:'smooth'}), 80);
+  }
+
+  function closeModal() {
+    $('modal')?.classList.remove('on');
+  }
+
+  function userName() {
+    if (!authUser) return '';
+    return authUser.user_metadata?.full_name || authUser.user_metadata?.name || authUser.email || '會員';
+  }
+
+  function updateAuthUI() {
+    const button = $('authButton');
+    if (!button) return;
+    if (authUser) {
+      button.textContent = '👤 ' + userName();
+      button.classList.add('auth-logged');
+    } else {
+      button.textContent = '登入';
+      button.classList.remove('auth-logged');
+    }
+  }
+
+  async function initAuth() {
+    try {
+      const response = await fetch('/api/auth-config');
+      if (!response.ok) throw new Error('找不到驗證設定');
+      const config = await response.json();
+      if (!config.supabaseUrl || !config.supabaseAnonKey) throw new Error('尚未設定 Supabase 環境變數');
+      if (!window.supabase?.createClient) throw new Error('Supabase 載入失敗');
+      supabaseClient = window.supabase.createClient(config.supabaseUrl, config.supabaseAnonKey);
+      const { data } = await supabaseClient.auth.getSession();
+      authUser = data.session?.user || null;
+      supabaseClient.auth.onAuthStateChange((_event, session) => {
+        authUser = session?.user || null;
+        updateAuthUI();
+      });
+    } catch (error) {
+      console.warn('Supabase Auth 尚未完成設定：', error.message);
+    } finally {
+      authReady = true;
+      updateAuthUI();
+    }
+  }
+
+  async function signInWithGoogle() {
+    const status = $('authStatus');
+    const button = $('googleLoginBtn');
+    if (!supabaseClient) {
+      if (status) status.textContent = '登入尚未完成設定。請確認 Vercel 已設定 SUPABASE_URL 與 SUPABASE_ANON_KEY。';
+      return;
+    }
+    if (button) { button.disabled = true; button.textContent = '正在前往 Google…'; }
+    if (status) status.textContent = '';
+    const { error } = await supabaseClient.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: window.location.origin + window.location.pathname }
+    });
+    if (error) {
+      if (status) status.textContent = '登入失敗：' + error.message;
+      if (button) { button.disabled = false; button.innerHTML = '<span class="google-g">G</span> 使用 Google 登入'; }
+    }
+  }
+
+  async function signOut() {
+    if (supabaseClient) await supabaseClient.auth.signOut();
+    authUser = null;
+    updateAuthUI();
+    closeModal();
+  }
+
+  function closeModal() {
+    $('modal')?.classList.remove('on');
+  }
+
+  function openModal(type) {
+    const content = $('modalContent');
+    if (!content) return;
+    if (type === 'login' && authUser) type = 'account';
+
+    const titles = {
+      free: ['免費試用一次 ✨', '留下 Email 後，立即開始第一次 AI 晚餐規劃。'],
+      monthly: ['媽媽月費｜NT$99／月', '目前為預覽版，付款成功會先模擬解鎖。'],
+      once: ['單次一週｜NT$39', '目前為預覽版，付款成功會先模擬解鎖。']
+    };
+
+    if (type === 'login') {
+      content.innerHTML = '<h2>登入冰箱媽媽 AI</h2><p class="hint">使用 Google 帳號登入，登入後可同步你的會員資料與方案。</p><button class="google-login" id="googleLoginBtn" type="button"><span class="google-g">G</span> 使用 Google 登入</button><div id="authStatus" class="auth-status"></div>';
+      $('modal').classList.add('on');
+      $('googleLoginBtn')?.addEventListener('click', signInWithGoogle);
+      return;
+    }
+
+    if (type === 'account') {
+      content.innerHTML = '<h2>👋 '+escapeHtml(userName())+'</h2><p class="hint">目前已使用 Google 登入<br>'+escapeHtml(authUser?.email || '')+'</p><button class="pay" id="continueApp" type="button">進入冰箱媽媽 AI</button><button class="logout" id="logoutBtn" type="button">登出</button>';
+      $('modal').classList.add('on');
+      $('continueApp')?.addEventListener('click', () => { closeModal(); showProduct(); });
+      $('logoutBtn')?.addEventListener('click', signOut);
+      return;
+    }
+
+    if (type === 'free') {
+      content.innerHTML = '<h2>'+titles[type][0]+'</h2><p>'+titles[type][1]+'</p><p class="hint">開始前請先登入 Google 帳號，方便保存你的會員身分。</p><button class="google-login" id="googleLoginBtn" type="button"><span class="google-g">G</span> 使用 Google 登入後開始</button><div id="authStatus" class="auth-status"></div>';
+      $('modal').classList.add('on');
+      if (authUser) { closeModal(); showProduct(); return; }
+      $('googleLoginBtn')?.addEventListener('click', signInWithGoogle);
+      return;
+    }
+
+    content.innerHTML = '<h2>'+titles[type][0]+'</h2><p>'+titles[type][1]+'</p><button class="pay" id="modalAction">前往付款</button>';
+    $('modal').classList.add('on');
+    $('modalAction').addEventListener('click', function () {
+      localStorage.setItem(PAID, type);
+      closeModal();
+      showProduct();
+      alert('預覽版已模擬解鎖成功 🎉');
+    });
+  }
+
+  function updatePlanUI() {
+    const paid = localStorage.getItem(PAID);
+    const used = localStorage.getItem(TRIAL);
+    const badge = $('planBadge');
+    const notice = $('trialNotice');
+    const isMonthly = paid === 'monthly';
+    document.querySelectorAll('.member-only').forEach(el => el.style.display = isMonthly ? (el.classList.contains('member-actions') ? 'flex' : 'block') : 'none');
+
+    if (paid) {
+      if (badge) badge.textContent = paid === 'monthly' ? '媽媽月費會員' : '單次方案已解鎖';
+      if (notice) notice.textContent = '🎉 已解鎖預覽方案，可以開始生成菜單。';
+    } else if (used) {
+      if (badge) badge.textContent = '免費試用已使用';
+      if (notice) {
+        notice.innerHTML = '';
+        const text = document.createTextNode('免費試用已使用完畢。');
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = '查看方案';
+        btn.addEventListener('click', showPricing);
+        notice.append(text, btn);
+      }
+    } else {
+      if (badge) badge.textContent = '免費體驗';
+      if (notice) notice.innerHTML = '✨ 你有 <b>1 次免費完整生成</b>。先輸入冰箱食材開始吧！';
+    }
+  }
+
+  function initChoices() {
+    const tools = ['平底鍋', '炒鍋', '電鍋', '氣炸鍋', '烤箱', '微波爐'];
+    const toolBox = $('tools');
+    if (toolBox) {
+      toolBox.innerHTML = tools.map((tool, index) =>
+        '<button type="button" class="choice'+(index===0?' on':'')+'" data-tool="'+escapeHtml(tool)+'">'+escapeHtml(tool)+'</button>'
+      ).join('');
+
+      toolBox.addEventListener('click', function (event) {
+        const button = event.target.closest('[data-tool]');
+        if (!button) return;
+        button.classList.toggle('on');
+      });
+    }
+
+    const times = $('times');
+    times?.addEventListener('click', function (event) {
+      const button = event.target.closest('[data-time]');
+      if (!button) return;
+      times.querySelectorAll('[data-time]').forEach(el => el.classList.remove('on'));
+      button.classList.add('on');
+    });
+
+    const wishSuggestions = $('wishSuggestions');
+    wishSuggestions?.addEventListener('click', function (event) {
+      const button = event.target.closest('[data-wish]');
+      if (!button) return;
+      button.classList.toggle('on');
+      const selected = Array.from(wishSuggestions.querySelectorAll('[data-wish].on')).map(el => el.dataset.wish);
+      const input = $('wishes');
+      if (input && selected.length) input.value = Array.from(new Set([...input.value.split(/[、,，\n]/).map(x => x.trim()).filter(Boolean), ...selected])).join('、');
+    });
+  }
+
+  function selectedTools() {
+    return Array.from(document.querySelectorAll('#tools [data-tool].on')).map(el => el.dataset.tool);
+  }
+
+  function selectedWishTools() {
+    const typed = $('wishTools')?.value.trim() || '';
+    return Array.from(new Set(typed.split(/[、,，\n]/).map(x => x.trim()).filter(Boolean)));
+  }
+
+  function selectedTime() {
+    return Number(document.querySelector('#times [data-time].on')?.dataset.time || 20);
+  }
+
+  function selectedWishes() {
+    const typed = $('wishes')?.value.trim() || '';
+    const chips = Array.from(document.querySelectorAll('#wishSuggestions [data-wish].on')).map(el => el.dataset.wish);
+    return Array.from(new Set([...typed.split(/[、,，\n]/).map(x => x.trim()).filter(Boolean), ...chips]));
+  }
+
+  function stepIcon(text) {
+    if (/洗|切|備|去皮|切小/.test(text)) return '🔪';
+    if (/炒|煎|鍋/.test(text)) return '🍳';
+    if (/電鍋|蒸/.test(text)) return '🍚';
+    if (/烤|氣炸/.test(text)) return '🔥';
+    return '🍽️';
+  }
+
+  const DISH_IMAGE_CACHE = 'icebox_mama_dish_image_cache_v1';
+  function dishImageKey(day){ return [day.name, day.cooking_method, ...(day.ingredients||[]).map(x=>x.name)].join('|').toLowerCase(); }
+  function readDishImageCache(){ try{return JSON.parse(localStorage.getItem(DISH_IMAGE_CACHE)||'{}')}catch{return {}} }
+  function writeDishImageCache(cache){ try{localStorage.setItem(DISH_IMAGE_CACHE, JSON.stringify(cache));}catch(e){console.warn('圖片快取儲存失敗',e);} }
+
+  function updateDishImageStatus(index, text, isError=false){
+    const loading=$('dishImageLoading_'+index);
+    if(!loading) return;
+    loading.textContent=text;
+    loading.classList.toggle('dish-image-error', !!isError);
+  }
+
+  async function generateOneDishImage(day, index, cache){
+    const key=dishImageKey(day);
+    const img=$('dishImage_'+index);
+    if(!img) return;
+
+    if(day.image){
+      img.src=day.image; img.style.display='block';
+      const loading=$('dishImageLoading_'+index); if(loading) loading.style.display='none';
+      return;
+    }
+    if(cache[key]){
+      day.image=cache[key]; img.src=day.image; img.style.display='block';
+      const loading=$('dishImageLoading_'+index); if(loading) loading.style.display='none';
+      return;
+    }
+
+    updateDishImageStatus(index,'📸 正在背景生成這道菜的完成圖…');
+    try{
+      const response=await fetch('/api/generate-dish-image',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({dish:day})
+      });
+      const data=await response.json();
+      if(!response.ok) throw new Error(data.error||'圖片生成失敗');
+
+      day.image=data.image;
+      cache[key]=data.image;
+      writeDishImageCache(cache);
+
+      // Re-query in case the user changed screens while this image was generating.
+      const latestImg=$('dishImage_'+index);
+      const latestLoading=$('dishImageLoading_'+index);
+      if(latestImg){
+        latestImg.src=data.image;
+        latestImg.style.display='block';
+      }
+      if(latestLoading) latestLoading.style.display='none';
+    }catch(error){
+      updateDishImageStatus(index,'📷 成品圖暫時生成失敗，不影響食譜使用',true);
+    }
+  }
+
+  function generateDishImagesInBackground(days){
+    const cache=readDishImageCache();
+
+    // Start all image jobs without blocking the text menu. Stagger requests slightly
+    // so the page remains responsive and the image endpoint is not hit all at once.
+    days.forEach((day,index)=>{
+      const delay=index*350;
+      window.setTimeout(()=>{
+        generateOneDishImage(day,index,cache);
+      },delay);
+    });
+  }
+
+  function renderMenu(days) {
+    const box = $('menu');
+    if (!box) return;
+    box.innerHTML = days.map((day, i) => `
+      <div class="day">
+        <h3>${escapeHtml(day.day)}｜${escapeHtml(day.name)}</h3>
+        <div class="dish-image-wrap"><div id="dishImageLoading_${i}" class="dish-image-loading">📸 正在生成這道菜的真實完成圖…</div><img id="dishImage_${i}" class="dish-image" alt="${escapeHtml(day.name)}完成料理圖" style="display:none"></div>
+        <div class="chips">
+          <span class="chip">⏱️ ${escapeHtml(day.total_minutes)} 分鐘</span>
+          <span class="chip">${escapeHtml(day.cooking_method)}</span>
+          <span class="chip">約 ${escapeHtml(day.servings)} 人份</span>
+        </div>
+        <div class="note">
+          <b>📏 食材數量</b>
+          ${(day.ingredients||[]).map(x => `<br>・${escapeHtml(x.name)}：${escapeHtml(x.amount)}`).join('')}
+          <br><br><b>👩‍🍳 作法與順序</b>
+          ${(day.steps||[]).map(s => `<div class="step"><div class="icon-step">${stepIcon(s.instruction)} <b>步驟 ${escapeHtml(s.order)}</b> <span class="chip">約 ${escapeHtml(s.minutes)}</span></div>${escapeHtml(s.instruction)}</div>`).join('')}
+          <br><b>🥦 核心營養</b><br>${escapeHtml(day.nutrition||'')}
+          <br><br><b>👶 幼兒調整</b><br>${escapeHtml(day.toddler_notes||'')}
+        </div>
+        <div class="dish-actions ${localStorage.getItem(PAID)==='monthly'?'':'hidden'}"><button type="button" data-replace="${i}">🔄 換這道菜</button><button type="button" data-favorite="${i}">❤️ 收藏這道菜</button></div>
+      </div>`).join('');
+  }
+
+  function renderShopping(items) {
+    const box = $('shopping');
+    if (!box) return;
+    if (!Array.isArray(items) || items.length === 0) {
+      box.innerHTML = '<div class="shopping">目前不需要額外補貨 🎉</div>';
+      return;
+    }
+    const groups = {};
+    items.forEach(item => {
+      const category = item.category || '其他';
+      if (!groups[category]) groups[category] = [];
+      groups[category].push(item);
+    });
+    box.innerHTML = Object.entries(groups).map(([category, group]) =>
+      '<div class="shopping"><b>'+escapeHtml(category)+'</b>'+
+      group.map(item => '<label><input type="checkbox"> '+escapeHtml(item.name)+'｜'+escapeHtml(item.amount)+(item.reason?'（'+escapeHtml(item.reason)+'）':'')+'</label>').join('')+
+      '</div>'
+    ).join('');
+  }
+
+  async function generateMenu() {
+    const paid = localStorage.getItem(PAID);
+    const used = localStorage.getItem(TRIAL);
+    if (!paid && used) {
+      alert('免費試用已使用完畢 💛');
+      showPricing();
+      return;
+    }
+
+    const payload = {
+      ingredients: $('ingredients')?.value.trim() || '',
+      staples: $('staples')?.value.trim() || '',
+      age: $('age')?.value || '3-4歲',
+      servings: Number($('servings')?.value || 1),
+      adultServings: Number($('adultServings')?.value || 0),
+      dishCount: Number($('dishCount')?.value || 3),
+      wantSoup: $('wantSoup')?.value || 'yes',
+      avoid: $('avoid')?.value.trim() || '',
+      texture: $('texture')?.value.trim() || '',
+      wishes: selectedWishes(),
+      tools: Array.from(new Set([...selectedTools(), ...selectedWishTools()])),
+      maxMinutes: selectedTime()
+    };
+
+    if (!payload.ingredients || !payload.staples) {
+      alert('請先輸入「冰箱現有食材」和「家中常備主食」喔！');
+      return;
+    }
+
+    const result = $('result');
+    const summary = $('summary');
+    result?.classList.remove('hidden');
+    if (summary) summary.textContent = '🤖 AI 正在規劃 5 天晚餐，完成後會先顯示文字菜單，料理完成圖會在背景陸續出現…';
+    result?.scrollIntoView({behavior:'smooth', block:'start'});
+
+    try {
+      const response = await fetch('/api/generate-menu', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(payload)
+      });
+
+      const raw = await response.text();
+      let data;
+      try {
+        data = JSON.parse(raw);
+      } catch {
+        throw new Error('伺服器回傳的不是 JSON。請確認 Vercel 專案已完整部署 api/generate-menu.js，且不要只上傳 public 資料夾。');
+      }
+
+      if (!response.ok) throw new Error(data.error || 'AI 生成失敗');
+      if (!Array.isArray(data.weekly_menu)) throw new Error('AI 回傳格式不完整，請再試一次。');
+
+      if (summary) summary.textContent = data.summary || '完成！這週晚餐不用再想了 ✨';
+      currentMenuData = data;
+      lastPayload = payload;
+      renderMenu(data.weekly_menu);
+      // 先讓完整文字菜單出現，再在背景生成真實完成圖，不阻塞使用者閱讀。
+      generateDishImagesInBackground(data.weekly_menu);
+      renderShopping(data.shopping_list);
+      if ($('hack')) $('hack').textContent = data.batch_prep_hack || '';
+
+      if (!paid) localStorage.setItem(TRIAL, '1');
+      updatePlanUI();
+    } catch (error) {
+      if (summary) {
+        summary.innerHTML = '<div class="error">⚠️ <b>生成失敗</b><br>'+escapeHtml(error.message)+'<br><small>如果你已在 Vercel 設定 OPENAI_API_KEY，請到 Deployments → Redeploy 重新部署一次。</small></div>';
+      }
+    }
+  }
+  function favorites(){try{return JSON.parse(localStorage.getItem(FAVORITES)||'[]')}catch{return []}}
+  function saveFavorites(list){localStorage.setItem(FAVORITES,JSON.stringify(list));}
+  function saveFavorite(index){if(!currentMenuData) return; const item=currentMenuData.weekly_menu[index]; const list=favorites(); if(!list.some(x=>x.name===item.name)){list.unshift({...item,savedAt:new Date().toISOString()});saveFavorites(list);} alert('已收藏 '+item.name+' ❤️');}
+  function renderFavorites(){
+    const box=$('favoriteList'); const detail=$('favoriteDetail'); if(!box)return; const list=favorites();
+    if(detail) detail.innerHTML='';
+    box.innerHTML=list.length?list.map((x,i)=>`<div class="favorite-item" data-open-favorite="${i}" role="button" tabindex="0"><b>${escapeHtml(x.name)}</b><br><span class="hint">${escapeHtml(x.cooking_method)}・${escapeHtml(x.total_minutes)} 分鐘</span></div>`).join(''):'<div class="hint">還沒有收藏的菜色，看到孩子喜歡的就按 ❤️ 收藏吧！</div>';
+  }
+  function showFavoriteDetail(index){
+    const item=favorites()[index]; const box=$('favoriteDetail'); if(!item||!box)return;
+    const dayOptions=(currentMenuData?.weekly_menu||[]).map((d,i)=>`<option value="${i}">${escapeHtml(d.day||('第 '+(i+1)+' 天'))}｜${escapeHtml(d.name)}</option>`).join('');
+    box.innerHTML=`<div class="favorite-detail"><h3>📖 ${escapeHtml(item.name)}</h3>${item.image?`<div class="dish-image-wrap"><img class="dish-image" src="${item.image}" alt="${escapeHtml(item.name)}完成料理圖"></div>`:''}<div class="chips"><span class="chip">⏱️ ${escapeHtml(item.total_minutes)} 分鐘</span><span class="chip">${escapeHtml(item.cooking_method)}</span><span class="chip">約 ${escapeHtml(item.servings)} 人份</span></div><div class="note"><b>📏 食材數量</b>${(item.ingredients||[]).map(x=>`<br>・${escapeHtml(x.name)}：${escapeHtml(x.amount)}`).join('')}<br><br><b>👩‍🍳 作法與順序</b>${(item.steps||[]).map(s=>`<div class="step"><div class="icon-step">${stepIcon(s.instruction)} <b>步驟 ${escapeHtml(s.order)}</b> <span class="chip">約 ${escapeHtml(s.minutes)}</span></div>${escapeHtml(s.instruction)}</div>`).join('')}<br><b>🥦 核心營養</b><br>${escapeHtml(item.nutrition||'')}<br><br><b>👶 幼兒調整</b><br>${escapeHtml(item.toddler_notes||'')}</div><div class="dish-actions"><button type="button" data-remove-favorite="${index}">🗑️ 取消收藏</button>${currentMenuData?`<button type="button" data-add-favorite="${index}">📋 加入本週菜單</button>`:''}</div>${currentMenuData?`<div id="addFavoriteBox" class="hidden"><label class="hint">選擇要替換的日期</label><select id="favoriteDaySelect">${dayOptions}</select><button type="button" class="primary" id="confirmAddFavorite" data-confirm-add="${index}">確認加入本週菜單</button></div>`:''}</div>`;
+    box.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+  function removeFavorite(index){const list=favorites();const removed=list.splice(index,1)[0];saveFavorites(list);renderFavorites();alert('已取消收藏 '+(removed?.name||'這道菜'));}
+  function addFavoriteToWeek(index){if(!currentMenuData||!Array.isArray(currentMenuData.weekly_menu)){alert('請先生成本週 5 天菜單');return;} const box=$('addFavoriteBox');box?.classList.remove('hidden');}
+  function confirmAddFavorite(index){const item=favorites()[index];const dayIndex=Number($('favoriteDaySelect')?.value);if(!item||!Number.isInteger(dayIndex)||!currentMenuData?.weekly_menu?.[dayIndex])return;const dayLabel=currentMenuData.weekly_menu[dayIndex].day;currentMenuData.weekly_menu[dayIndex]={...item,day:dayLabel};renderMenu(currentMenuData.weekly_menu);renderFavorites();alert('已將「'+item.name+'」加入 '+dayLabel+' 的本週菜單 📋');$('menu')?.scrollIntoView({behavior:'smooth',block:'start'});}
+  async function replaceDish(index){
+    if(localStorage.getItem(PAID)!=='monthly'){alert('「換這道菜」是媽媽月費會員功能');return;} if(!currentMenuData||!lastPayload)return; const dish=currentMenuData.weekly_menu[index];
+    const button=document.querySelector(`[data-replace="${index}"]`); if(button){button.disabled=true;button.textContent='🤖 AI 換菜中…';}
+    try{const response=await fetch('/api/replace-dish',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({currentDish:dish,otherDishNames:currentMenuData.weekly_menu.filter((_,i)=>i!==index).map(x=>x.name),preferences:lastPayload})});const raw=await response.text();let data;try{data=JSON.parse(raw)}catch{throw new Error('伺服器回傳格式錯誤')};if(!response.ok)throw new Error(data.error||'換菜失敗');currentMenuData.weekly_menu[index]=data;renderMenu(currentMenuData.weekly_menu);alert('已換成：'+data.name+' ✨');}catch(e){alert('換菜失敗：'+e.message);if(button){button.disabled=false;button.textContent='🔄 換這道菜';}}
+  }
+
+  function bindLandingButtons() {
+    document.querySelectorAll('button').forEach(button => {
+      const label = (button.textContent || '').trim();
+      if (label.includes('免費試用一次') || label === '免費開始') button.addEventListener('click', () => openModal('free'));
+      else if (label.includes('開始月費方案')) button.addEventListener('click', () => openModal('monthly'));
+      else if (label.includes('購買這週菜單')) button.addEventListener('click', () => openModal('once'));
+    });
+
+    $('authButton')?.addEventListener('click', () => openModal(authUser ? 'account' : 'login'));
+    $('go')?.addEventListener('click', generateMenu);
+    $('regenerateWeek')?.addEventListener('click', () => { if(confirm('要依照目前設定重新生成整週 5 天菜單嗎？這會再使用 1 次 AI 生成。')) generateMenu(); });
+    $('showFavorites')?.addEventListener('click', () => { const panel=$('favoritesPanel'); panel?.classList.toggle('hidden'); renderFavorites(); });
+    $('favoriteList')?.addEventListener('click', event => { const item=event.target.closest('[data-open-favorite]'); if(item) showFavoriteDetail(Number(item.dataset.openFavorite)); });
+    $('favoriteList')?.addEventListener('keydown', event => { if(event.key==='Enter'||event.key===' '){const item=event.target.closest('[data-open-favorite]');if(item){event.preventDefault();showFavoriteDetail(Number(item.dataset.openFavorite));}} });
+    $('favoriteDetail')?.addEventListener('click', event => { const remove=event.target.closest('[data-remove-favorite]'); const add=event.target.closest('[data-add-favorite]'); const confirmAdd=event.target.closest('[data-confirm-add]'); if(remove) removeFavorite(Number(remove.dataset.removeFavorite)); if(add) addFavoriteToWeek(Number(add.dataset.addFavorite)); if(confirmAdd) confirmAddFavorite(Number(confirmAdd.dataset.confirmAdd)); });
+    $('menu')?.addEventListener('click', event => { const r=event.target.closest('[data-replace]'); const f=event.target.closest('[data-favorite]'); if(r) replaceDish(Number(r.dataset.replace)); if(f) saveFavorite(Number(f.dataset.favorite)); });
+    document.querySelector('.back-home')?.addEventListener('click', showLanding);
+    $('modal')?.addEventListener('click', event => {
+      if (event.target === $('modal')) closeModal();
+    });
+    $('modal')?.querySelector('.close')?.addEventListener('click', closeModal);
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeModal();
+    });
+  }
+
+  function init() {
+    initChoices();
+    bindLandingButtons();
+    initAuth();
+    updatePlanUI();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script><div id="previewBanner" style="position:fixed;right:16px;bottom:16px;z-index:9999;background:#29342f;color:#fff;padding:10px 14px;border-radius:999px;font-size:12px;box-shadow:0 8px 24px #0002">🧪 目前為功能預覽版</div></body></html>
