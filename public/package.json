@@ -1,1 +1,14 @@
 
+{
+  "name": "icebox-mama-ai",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "dev": "vercel dev", "start": "vercel dev" },
+  "dependencies": {
+    "openai": "^6.0.0"
+  },
+  "devDependencies": {
+    "vercel": "^48.0.0"
+  }
+}
