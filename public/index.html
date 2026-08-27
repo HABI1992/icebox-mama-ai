@@ -46,8 +46,17 @@
   let currentMenuData = null;
   let lastPayload = null;
   let supabaseClient = null;
-  let authUser = null;
-  let authReady = false;
+  
+const SUPABASE_URL = 'https://hcxtrwfturxnzihptors.supabase.co/rest/v1/';
+const SUPABASE_ANON_KEY = 'sb_publishable_cVaDKabXZ_1UN3omJQ-lNw_kJr2ypi-';
+
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+let authUser = null;
+let authReady = false;
 
   function escapeHtml(value) {
     return String(value ?? '').replace(/[&<>"']/g, ch => ({
